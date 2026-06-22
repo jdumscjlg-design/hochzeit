@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jenny & Julian heiraten!</title>
     <style>
-        /* Edles, gemütliches Winter- & Keller-Design */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #1a2536; /* Gemütliches Nachtblau */
+            background-color: #1a2536;
             color: #f5f5f5;
             margin: 0;
             padding: 0;
@@ -18,13 +17,12 @@
             background-color: #111a24;
             padding: 60px 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-bottom: 2px solid #d4af37; /* Goldene Linie */
+            border-bottom: 2px solid #d4af37;
         }
         h1 {
             font-size: 3.5rem;
-            color: #d4af37; /* Edles Gold */
+            color: #d4af37;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
         .subtitle {
             font-size: 1.5rem;
@@ -35,19 +33,13 @@
             max-width: 800px;
             margin: 40px auto;
             padding: 30px;
-            background: #24334a; /* Etwas helleres Blau für die Box */
+            background: #24334a;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
-        h2 {
-            color: #d4af37;
-        }
-        p {
-            line-height: 1.6;
-            color: #e0e6ed;
-        }
+        h2 { color: #d4af37; }
+        p { line-height: 1.6; color: #e0e6ed; }
         
-        /* Countdown Style */
         .countdown-container {
             margin: 30px 0;
             padding: 20px;
@@ -74,7 +66,6 @@
             font-weight: bold;
             color: #d4af37;
         }
-
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -84,21 +75,11 @@
         .detail-box {
             padding: 25px;
             background: #1a2536;
-            border: 1px solid #d4af37; /* Goldener Rahmen */
+            border: 1px solid #d4af37;
             border-radius: 8px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-        .detail-box h3 {
-            color: #d4af37;
-            margin-top: 0;
-            font-size: 1.3rem;
-        }
-        footer {
-            margin-top: 60px;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #778899;
-        }
+        .detail-box h3 { color: #d4af37; margin-top: 0; }
+        footer { margin-top: 60px; padding: 20px; color: #778899; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -110,15 +91,15 @@
 
     <div class="container">
         <h2>Herzlich Willkommen zu unserer Hochzeits-Website!</h2>
-        <p>Wir können es kaum erwarten, am schönsten Tag unseres Lebens mit unseren Lieblingsmenschen anzustoßen. Auf dieser Seite findet ihr alle wichtigen Informationen rund um unsere Hochzeit.</p>
+        <p>Wir können es kaum erwarten, am schönsten Tag unseres Lebens mit unseren Lieblingsmenschen anzustoßen.</p>
         
         <div class="countdown-container">
             <h3 style="color: #e0e6ed; margin-top: 0;">Der Countdown läuft...</h3>
             <div class="countdown">
-                <div class="time-box"><span id="days">00</span>Tage</div>
-                <div class="time-box"><span id="hours">00</span>Std</div>
-                <div class="time-box"><span id="minutes">00</span>Min</div>
-                <div class="time-box"><span id="seconds">00</span>Sek</div>
+                <div class="time-box"><span id="days">--</span>Tage</div>
+                <div class="time-box"><span id="hours">--</span>Std</div>
+                <div class="time-box"><span id="minutes">--</span>Min</div>
+                <div class="time-box"><span id="seconds">--</span>Sek</div>
             </div>
         </div>
 
@@ -138,38 +119,34 @@
         </div>
     </div>
 
-    <footer>
-        <p>Erstellt mit ❤️ für unsere Gäste</p>
-    </footer>
+    <footer><p>Erstellt mit ❤️ für unsere Gäste</p></footer>
 
     <script>
-        // Bombensicheres Datumsformat für alle Browser: YYYY-MM-DDTHH:MM:SS
-        const countDownDate = new Date("2027-12-04T16:00:00").getTime();
-
-        // Jede Sekunde aktualisieren
-        const x = setInterval(function() {
+        function updateCountdown() {
+            // Zieldatum: 4. Dezember 2027, 16:00:00 Uhr
+            const target = new Date(2027, 11, 4, 16, 0, 0).getTime(); 
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const diff = target - now;
 
-            // Zeitberechnungen für Tage, Stunden, Minuten und Sekunden
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Ergebnisse in die HTML-Elemente schreiben
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            // Wenn der Countdown abgelaufen ist
-            if (distance < 0) {
-                clearInterval(x);
+            if (diff <= 0) {
                 document.querySelector(".countdown-container").innerHTML = "<h3 style='color: #d4af37;'>Wir heiraten HEUTE! 🎉</h3>";
+                return;
             }
-        }, 1000);
-    </script>
 
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = d;
+            document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
+        }
+
+        // Sofort einmal ausführen und dann jede Sekunde
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
