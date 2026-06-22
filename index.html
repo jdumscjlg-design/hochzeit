@@ -46,6 +46,35 @@
             line-height: 1.6;
             color: #e0e6ed;
         }
+        
+        /* Countdown Style */
+        .countdown-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #111a24;
+            border-radius: 8px;
+            border: 1px dashed #d4af37;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2rem;
+        }
+        .time-box {
+            background: #24334a;
+            padding: 15px;
+            border-radius: 6px;
+            min-width: 70px;
+            border: 1px solid #d4af37;
+        }
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -55,7 +84,7 @@
         .detail-box {
             padding: 25px;
             background: #1a2536;
-            border: 1px solid #d4af37; /* Goldener Rahmen für die Boxen */
+            border: 1px solid #d4af37; /* Goldener Rahmen */
             border-radius: 8px;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
@@ -83,6 +112,16 @@
         <h2>Herzlich Willkommen zu unserer Hochzeits-Website!</h2>
         <p>Wir können es kaum erwarten, am schönsten Tag unseres Lebens mit unseren Lieblingsmenschen anzustoßen. Auf dieser Seite findet ihr alle wichtigen Informationen rund um unsere Hochzeit.</p>
         
+        <div class="countdown-container">
+            <h3 style="color: #e0e6ed; margin-top: 0;">Der Countdown läuft...</h3>
+            <div class="countdown">
+                <div class="time-box"><span id="days">00</span>Tage</div>
+                <div class="time-box"><span id="hours">00</span>Std</div>
+                <div class="time-box"><span id="minutes">00</span>Min</div>
+                <div class="time-box"><span id="seconds">00</span>Sek</div>
+            </div>
+        </div>
+
         <div class="details-grid">
             <div class="detail-box">
                 <h3>Wann?</h3>
@@ -103,5 +142,6 @@
         <p>Erstellt mit ❤️ für unsere Gäste</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        // Zieldatum: 4. Dezember 2027 um 16:00 Uhr
+        const countDownDate = new Date("
