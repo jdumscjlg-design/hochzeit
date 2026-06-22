@@ -6,10 +6,10 @@
     <title>Jenny & Julian heiraten!</title>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        /* Grunddesign: Rustikaler Winterwald-Hintergrund */
+        /* Fester Winterwald-Hintergrund (Garantiert ohne Surfer!) */
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: #111a12 url('https://images.unsplash.com/photo-1482531007909-192ac913980a?q=80&w=1920') no-repeat center center fixed;
+            background: #111a12 url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?q=80&w=1920') no-repeat center center fixed;
             background-size: cover;
             color: #2c3e2b;
             margin: 0;
@@ -20,24 +20,24 @@
             min-height: 100vh;
         }
 
-        /* Die hölzerne Hauptkarte (wie das Schild auf dem Foto) */
+        /* Die hölzerne Hauptkarte */
         .main-card {
-            background: #f7f4eb url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800') repeat;
-            max-width: 650px;
+            background: #f7f4eb url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+            background-color: #f4f0e6;
+            max-width: 600px;
             width: 100%;
             margin: 20px auto;
-            padding: 40px 25px;
+            padding: 40px 20px;
             border-radius: 4px;
             box-shadow: 
-                0 0 0 12px #5c4033, /* Innerer Holzrahmen */
-                0 15px 35px rgba(0,0,0,0.6); /* Äußerer Schatten */
+                0 0 0 12px #5c4033, 
+                0 15px 35px rgba(0,0,0,0.6); 
             border: 3px solid #3d2b22;
             box-sizing: border-box;
             position: relative;
             text-align: center;
         }
 
-        /* Dekorative Ecken (Tannenzweige-Andeutung) */
         .main-card::before {
             content: "❄ 🌲 ❄";
             position: absolute;
@@ -50,10 +50,9 @@
             opacity: 0.7;
         }
 
-        /* Überschriften im edlen Schreibschrift-Stil */
         h1 {
             font-family: 'Alex Brush', cursive;
-            font-size: 4rem;
+            font-size: 3.8rem;
             color: #2b3a2d;
             margin: 20px 0 0 0;
             font-weight: normal;
@@ -62,23 +61,47 @@
 
         .subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-style: italic;
             color: #4a5d4e;
-            margin: 0 0 30px 0;
+            margin: 0 0 25px 0;
             letter-spacing: 2px;
+        }
+
+        /* Apple-Style Slideshow (Slider) */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            height: 300px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 1px solid rgba(92, 64, 51, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Eleganter Überblend-Effekt */
+            background-size: cover;
+            background-position: center;
+        }
+        .slide.active {
+            opacity: 1;
         }
 
         /* Winterlicher Countdown */
         .countdown-container {
             margin: 30px 0;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             padding: 15px;
             border-radius: 4px;
             border: 1px solid rgba(74, 93, 78, 0.3);
         }
         .countdown-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 15px;
@@ -87,11 +110,153 @@
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
         }
         .time-box {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
             border-radius: 4px;
-            min-width: 65px;
-            border: 1px solid #
+            min-width: 60px;
+            border: 1px solid #5c4033;
+        }
+        .time-box span {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2b3a2d;
+        }
+        .time-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .location-highlight {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 5rem;
+            color: #1e2e22;
+            margin: 15px 0;
+            line-height: 0.8;
+        }
+
+        .divider {
+            font-size: 1.3rem;
+            color: #8fa492;
+            margin: 15px 0;
+        }
+
+        /* Infoboxen */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        @media(min-width: 480px) {
+            .info-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border: 1px solid #5c4033;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            color: #5c4033;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(92, 64, 51, 0.3);
+            padding-bottom: 5px;
+        }
+        .info-box p { font-size: 1.1rem; line-height: 1.4; margin: 10px 0 0 0; }
+
+        footer { margin-top: 30px; font-size: 0.85rem; color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        
+        <h1>Jenny & Julian</h1>
+        <div class="subtitle">Wir sagen Ja!</div>
+
+        <div class="slider-container">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1489440543286-a69330151c0b?q=80&w=600');"></div>
+        </div>
+
+        <div class="countdown-container">
+            <div class="countdown-title">Der Countdown läuft...</div>
+            <div class="countdown">
+                <div class="time-box"><span id="days">--</span><div class="time-label">Tage</div></div>
+                <div class="time-box"><span id="hours">--</span><div class="time-label">Std</div></div>
+                <div class="time-box"><span id="minutes">--</span><div class="time-label">Min</div></div>
+                <div class="time-box"><span id="seconds">--</span><div class="time-label">Sek</div></div>
+            </div>
+        </div>
+
+        <div class="divider">🌲 ❄ 🌲</div>
+        <div style="font-size: 1.3rem; text-transform: uppercase; letter-spacing: 3px; color: #5c4033;">Hochzeit im</div>
+        <div class="location-highlight">Wölbekeller</div>
+        <div class="divider">❄ ❄ ❄</div>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>Wann?</h3>
+                <p><strong>Samstag, 04.12.2027</strong><br>Beginn um 16:00 Uhr</p>
+            </div>
+            <div class="info-box">
+                <h3>Wo?</h3>
+                <p><strong>GE-Wölbekeller</strong><br>Gelsenkirchen</p>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 15px;">
+            <h3>Anmeldung (RSVP)</h3>
+            <p>Bitte gebt uns bald Bescheid, ob ihr diesen besonderen Tag mit uns feiert!</p>
+        </div>
+
+        <footer>Erstellt mit ❤️ für unsere Gäste</footer>
+    </div>
+
+    <script>
+        // 1. Countdown-Logik
+        function updateCountdown() {
+            const target = new Date(2027, 11, 4, 16, 0, 0).getTime(); 
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.querySelector(".countdown-container").innerHTML = "<h2 style='font-family: \"Alex Brush\", cursive; font-size: 2.5rem; color: #2b3a2d; margin:0;'>Wir heiraten HEUTE! 🎉</h2>";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = d;
+            document.getElementById("hours").textContent = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").textContent = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // 2. Slideshow-Logik (Automatisches Überblenden alle 4 Sekunden)
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 4000);
+    </script>
+</body>
+</html>
